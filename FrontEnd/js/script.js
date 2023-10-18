@@ -400,9 +400,10 @@ const deleteWork = async (cardId) => {
           getWorksAdmin().then((data) => {
               adminGallery(data);
           });
-          getWorksUser().then((data)=>{
+        /*   getWorksUser().then((data)=>{
             dynamicGallery(data);
-        });
+        }); */
+      WorksGallery()
       } else {
           console.error("Erreur lors de la suppression de la carte.");
       }
