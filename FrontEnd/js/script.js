@@ -366,7 +366,8 @@ const adminGallery = (cards) => {
 
       // Ajoute un gestionnaire d'événements de clic à l'icône "fa fa-trash"
       const trashIcon = adminCardElement.querySelector(".fa-trash");
-      trashIcon.addEventListener("click", () => {
+      trashIcon.addEventListener("click", (e) => {
+        e.preventDefault;
           // Obtenez l'ID de la carte à supprimer
           const cardId = card.id;
           
