@@ -1,0 +1,532 @@
+/* http://meyerweb.com/eric/tools/css/reset/
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+/** end reset css**/
+body {
+	max-width: 1140px;
+	margin:auto;
+	font-family: 'Work Sans' ;
+	font-size: 14px;
+}
+header {
+	display: flex;
+	justify-content: space-between;
+	margin: 50px 0
+}
+section {
+	margin: 50px 0
+}
+
+h1{
+	display: flex;
+	flex-direction: column;
+	font-family: 'Syne';
+	font-size: 22px;
+	font-weight: 800;
+	color: #B1663C
+}
+
+h1 > span {
+	font-family: 'Work Sans';
+	font-size:10px;
+	letter-spacing: 0.1em;
+;
+}
+
+h2{
+	font-family: 'Syne';
+	font-weight: 700;
+	font-size: 30px;
+	color: #1D6154
+}
+nav ul {
+	display: flex;
+	align-items: center;
+	list-style-type: none;
+
+}
+nav li {
+	padding: 0 10px;
+	font-size: 1.2em;
+}
+
+li:hover {
+	color: #B1663C;
+}
+#introduction {
+	display: flex;
+	align-items: center;
+}
+#introduction figure {
+	flex: 1
+}
+#introduction img {
+	display: block;
+	margin: auto;
+	width: 80%;
+}
+
+#introduction article {
+	flex: 1
+}
+#introduction h2 {
+	margin-bottom: 1em;
+}
+
+#introduction p {
+	margin-bottom: 0.5em;
+}
+#portfolio h2 {
+	text-align: center;
+	margin-bottom: 1em;
+}
+.hidden{
+	display:none;
+}
+.gallery {
+	width: 100%;
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr;
+	grid-column-gap: 20px;
+	grid-row-gap: 20px;
+}
+
+.gallery img {
+	width: 100%;
+
+}
+#contact {
+	width: 50%;
+margin: auto;
+}
+#contact > * {
+	text-align: center;
+
+}
+#contact h2{
+	margin-bottom: 20px;
+}
+#contact form {
+	text-align: left;
+	margin-top:30px;
+	display: flex;
+	flex-direction: column;
+}
+
+#contact input {
+	height: 50px;
+	font-size: 1.2em;
+	border: none;
+	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+}
+#contact label {
+	margin: 2em 0 1em 0;
+}
+#contact textarea {
+	border: none;
+	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+}
+
+input[type="submit"]{
+	font-family: 'Syne';
+	font-weight: 700;
+	color: white;
+	background-color: #1D6154;
+	margin : 2em auto ;
+	width: 180px;
+	text-align: center;
+	border-radius: 60px ;
+}
+
+footer nav ul {
+	display: flex;
+	justify-content: flex-end;
+	margin: 2em
+}
+
+/* gestion de la barre de filtre*/
+.filterBar {
+	width:100%;
+	text-align: center;
+	padding: 20px;
+	
+}
+.FilterButton{
+	border-radius: 60px;
+	border: 1px solid #1D6154; 
+	padding: 10px;
+	margin: 10px;
+	height: 37px; 
+	background: white;
+	color: #1D6154;
+	text-align: center;
+	font-family: Syne;
+	font-size: 16px;
+	font-style: normal;
+	font-weight: 700;
+	line-height: normal; 
+	justify-content: center;
+}
+innerText.FilterButton{
+	justify-content: center;
+}
+
+/* Gestion du login */
+#loginForm{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	padding-left: 50px;
+}
+
+
+#ButtonLogin{
+	text-decoration: none;
+	color:#000000;
+}
+.login label{
+	margin-bottom: 10px;
+}
+
+.login input{
+	width: 300px;
+	padding: 10px;
+	border: 1px solid #eeee;
+	margin-bottom: 20px;
+}
+
+.login label, .login input{
+	display: block;
+} 
+
+#submit{
+	display: inline;
+	width: 200px;
+	box-shadow: var(--box-shadow);
+}
+
+#pswd_forgot{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+/***********mode admin***************/
+.editMode {
+	display: none;
+	justify-content: center;
+	align-items: center;
+	gap: 1rem;
+	background-color: black;
+	padding-block: 1em;
+  }
+
+  .btnModifyWorks{
+	margin-left: 700px;
+	display: none;
+	background: none;
+	justify-content: center;
+	align-items: center;
+	border: none;
+	font-size: 0.875rem;
+	gap: 0.5em;
+	font-family: "Work Sans";
+	font-style: normal;
+	cursor: pointer;
+	padding: 0;
+  }
+  
+  .editMode p {
+	align-items: center;
+	font-family: "Work Sans";
+	font-size: 1rem;
+	color: #ffffff;
+  }
+  
+  .editMode svg {
+	color: white;
+  }
+
+  /*********GESTION DE LA PREMMIERE MODALE********/
+  .modal {
+	position: absolute;
+	
+	left: 50%;
+	transform: translate(-50%, -50%);
+	width: 35%;
+    height: 90%;
+	background-color: white;
+	padding: 4rem;
+	border-radius: 5px;
+	box-shadow: 0 3rem 5rem rgba(0, 0, 0, 0.3);
+	z-index: 10;
+  }
+  
+  .overlay {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	/*background-color: rgba(0, 0, 0, 0.432);*/
+	/*backdrop-filter: blur(3px);*/
+	z-index: 5;
+  }
+
+  .close-modal {
+	position: absolute;
+	top: 1.2rem;
+	right: 2rem;
+	font-size: 5rem;
+	color: #333;
+	cursor: pointer;
+	border: none;
+	background: none;
+  }
+  #modalHeader {
+	display: flex;
+	flex-direction: row;
+	margin:0px;
+  } 
+  
+  #titleModal {
+	font-size: xx-large;
+	text-align: center;
+	padding-top: 20px;
+  }
+  
+  .fa-xmark {
+	position: absolute;
+	top: 40px;
+	left: 600px;
+	font-size:x-large ;
+	
+  }
+  
+  .modal-wrapper img {
+	width: 100%;
+	height: 10%;
+  }
+  
+  hr {
+	margin-block: 50px;
+  }
+  
+  #modalFooter {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 30px;
+  }
+  
+  .btn-add-picture {
+	display: flex;
+	font-family: "Syne";
+	font-weight: 700;
+	color: white;
+	background-color: #1d6154;
+	margin: 0px;
+	width: auto;
+	padding-inline: 25px;
+	padding-block: 7px;
+	text-align: center;
+	border-radius: 60px;
+	border: 2px solid #1d6154;
+  }
+  .btn-add-pic:hover {
+	color: #1d6154;
+	background-color: white;
+  }
+  
+  .modal-wrapper figure {
+	position: relative;
+  }
+
+  .fa-trash {
+	align-items: flex-end;
+	position: relative;
+	width: 9px;
+	color: white;
+	padding: 7px;
+	background-color: #000000;
+	border-radius: 5px;
+	top:30px;
+	left:55px;
+  }  
+  .caption-element{
+	align-items: flex-end;
+	display: flex;
+  }
+  .flex-container{
+	display:flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap:10px;
+}
+.flex-item{
+	display: flex;
+	flex-direction: column;
+	width: 85px;
+	justify-content: center;
+	flex-shrink: 0; 
+}
+
+/**********GESTION DE LA DEUXIEME MODALE***********/
+#arrow {
+	position: absolute;
+	top: 40px;
+	left: 60px;
+	font-size:x-large ;
+  }
+  
+  #image-wrapper{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	gap: 0px;
+	background-color: #e8f1f6;
+	height: 185px;
+	margin: 10px;
+	padding: 10px;
+  }
+  
+  form {
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+  }
+  
+  dialog form {
+	display: none;
+  }
+  
+  #Titre,
+  #cat {
+	margin-top: 30px;
+	align-items: flex-start;
+  }
+  
+  form i {
+	color: #b9c5cc;
+	font-size: xx-large;
+	padding: 0;
+	font-size: 4em;
+	font-weight: lighter;
+	margin: 20px;
+	width: 56px;
+  }
+  
+  #file-upload {
+	filter: blur(4000px);
+	margin: 0;
+  }
+  
+  #image-preview {
+	width: fit-content;
+	block-size: fit-content;
+	max-width: 150px;
+  }
+  
+  form label span {
+	all: unset;
+	color: #306685;
+	background-color: #cbd6dc;
+	border-radius: 15px;
+	padding-inline: 20px;
+	padding-block: 10px;
+  }
+  
+  form input :first-child {
+	all: unset;
+	color: #306685;
+	background-color: #cbd6dc;
+	border-radius: 15px;
+	padding-inline: 20px;
+	padding-block: 10px;
+	display: flex;
+	align-items: center;
+  }
+  
+  form * {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	width: 420px;
+	gap: 15px;
+  }
+.login{
+	flex-direction: column;
+	align-items: center;
+  }
+  #btn-validate {
+	justify-content: center;
+	font-family: "Syne";
+	font-weight: 700;
+	color: white;
+	background-color: #a7a7a7;
+	width: 100px;
+	padding-inline: 25px;
+	padding-block: 7px;
+	text-align: center;
+	border-radius: 60px;
+	border: 2px solid #a7a7a7;
+  }
+  
+  #btnvalidate:hover,
+  #btnvalidate:focus {
+	color: #6e6d6d;
+	background-color: white;
+  }
+
+  .valid{
+	background-color : "#1d6154";
+	border : "#1d6154";
+	color : "white";
+  }
