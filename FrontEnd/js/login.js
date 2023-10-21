@@ -3,6 +3,7 @@
    // sessionStorage.clear();
 
    const loginForm = document.querySelector('#submit')
+   const errorMsg = document.getElementById('errorMsg');
    loginForm.addEventListener('click', function(e){
        e.preventDefault();
        const user= {
@@ -34,7 +35,7 @@
                           //redirection vers l'index.html
                           document.location.href="index.html";                      
                       }else{
-                          let errorMsg = document.getElementById('error-message');
+                          let errorMsg = document.getElementById('errorMsg');
                           errorMsg.textContent="Identifiant ou mot de passe incorrect !";
                           if (!id.email.match(/^[a-zA-Z0-9._-]+@[a-zA-Z0-9._-]{2,}\.[a-z]{2,4}$/g)) {
                             const p = document.createElement("p");
@@ -53,7 +54,7 @@
                       })
                      
                       .catch(error => {
-                      console.error(error);
+                        errorMsg.textContent = "Une erreur s'est produite : " + errorMsg.textContent; // Affichez l'erreur dans l'élément HTML
                       
                   });
              
