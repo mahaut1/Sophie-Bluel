@@ -213,6 +213,81 @@ console.log('Buton clicked')
 modal.classList.add('hidden')
 overlay.classList.add('hidden')
 }
+// Cette fonction effectue une requête vers l'api pour récupérer les works et les afficher dans la fenêtre modale. Elle renvoie les données sous forme de tableau
+const getWorksAdmin= async()=>{
+  try{
+      console.log("je me connecte à l'api")
+      const response= await fetch("http://localhost:5678/api/works");
+      const data= await response.json();
+      return data;
+  }catch (error){
+      console.log(error);
+  }
+  }
+  // Cette fonction prend un tableau de works et les affiche dans la modale.Elle crée une card par works y compris des options pour supprimer chaque work.
+  const adminGallery = (cards) => {
+  console.log("J'affiche les cards dans la modale");
+  const flexModal = document.querySelector("#modalFlex");
+  flexModal.innerHTML = "";
+  
+  cards.forEach((card) => {
+    console.log("Je crée les cards de la modale");
+    // Gérer le contenu des carte
+    const adminCardHTML = `
+        <div class="flex-item admin-card" data-id="${card.id}"> 
+            <i class="fa fa-trash"></i>
+            <img src="${card.imageUrl}" class="flex-item">
+            <figcaption class="caption-element">éditer</figcaption>
+        </div>
+    `;
+    const adminCardElement = document.createElement('div');
+    adminCardElement.innerHTML = adminCardHTML;
+  
+    // Ajoute un gestionnaire d'événements de clic à l'icône "fa fa-trash"
+    const trashIcon = adminCardElement.querySelector(".fa-trash");
+    trashIcon.addEventListener("click", (e) => {
+      e.preventDefault;
+        // Obtenez l'ID de la carte à supprimer
+        const cardId = card.id;
+        
+        // Appelez une fonction pour supprimer la carte avec cet ID
+        deleteWork(cardId);
+    });
+  
+    flexModal.appendChild(adminCardElement);
+  });
+  }
+  
+  getWorksAdmin().then((data)=>{
+  adminGallery(data)
+  })
+  // Cette fonction permet à l'administrateur de supprimer un work
+  const deleteWork = async (cardId) => {
+  try {
+    console.log("Suppression de la carte avec l'ID : " + cardId);
+    const response = await fetch(`http://localhost:5678/api/works/${cardId}`, {
+        method: 'DELETE',
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token"),
+            'Content-Type': 'application/json'
+        }
+    });
+  
+    if (response.ok) {
+        console.log("La carte a été supprimée avec succès.");
+        // Rafraîchir la galerie après la suppression
+        getWorksAdmin().then((data) => {
+            adminGallery(data);
+        });
+     
+   new WorksGallery()
+    } else {
+        console.error("Erreur lors de la suppression de la carte.");
+    }
+  } catch (error) {
+    console.error(error);
+  }
+  }
 // Le bouton d'ajout d'une image à un gestionnaire d'événements qui remplace le contenu de la modale par un formulaire permettant à l'administrateur d'ajouter une nouvelle oeuvre. Cela inclut la gestion de l'aperçu de l'image, la vérifications des inputs  et la soumission du formulaire
 addWorkButton.addEventListener("click", ()=>{
   const flexModal = document.querySelector("#modalFlex");
@@ -345,78 +420,3 @@ btnCloseModal.addEventListener('click',closeModal)
 btnOpenmodal.addEventListener('click',openModal)
 overlay.addEventListener('click',closeModal)
 
-// Cette fonction effectue une requête vers l'api pour récupérer les works et les afficher dans la fenêtre modale. Elle renvoie les données sous forme de tableau
-const getWorksAdmin= async()=>{
-try{
-    console.log("je me connecte à l'api")
-    const response= await fetch("http://localhost:5678/api/works");
-    const data= await response.json();
-    return data;
-}catch (error){
-    console.log(error);
-}
-}
-// Cette fonction prend un tableau de works et les affiche dans la modale.Elle crée une card par works y compris des options pour supprimer chaque work.
-const adminGallery = (cards) => {
-console.log("J'affiche les cards dans la modale");
-const flexModal = document.querySelector("#modalFlex");
-flexModal.innerHTML = "";
-
-cards.forEach((card) => {
-  console.log("Je crée les cards de la modale");
-  // Gérer le contenu des carte
-  const adminCardHTML = `
-      <div class="flex-item admin-card" data-id="${card.id}"> 
-          <i class="fa fa-trash"></i>
-          <img src="${card.imageUrl}" class="flex-item">
-          <figcaption class="caption-element">éditer</figcaption>
-      </div>
-  `;
-  const adminCardElement = document.createElement('div');
-  adminCardElement.innerHTML = adminCardHTML;
-
-  // Ajoute un gestionnaire d'événements de clic à l'icône "fa fa-trash"
-  const trashIcon = adminCardElement.querySelector(".fa-trash");
-  trashIcon.addEventListener("click", (e) => {
-    e.preventDefault;
-      // Obtenez l'ID de la carte à supprimer
-      const cardId = card.id;
-      
-      // Appelez une fonction pour supprimer la carte avec cet ID
-      deleteWork(cardId);
-  });
-
-  flexModal.appendChild(adminCardElement);
-});
-}
-
-getWorksAdmin().then((data)=>{
-adminGallery(data)
-})
-// Cette fonction permet à l'administrateur de supprimer un work
-const deleteWork = async (cardId) => {
-try {
-  console.log("Suppression de la carte avec l'ID : " + cardId);
-  const response = await fetch(`http://localhost:5678/api/works/${cardId}`, {
-      method: 'DELETE',
-      headers: {
-        Authorization: "Bearer " + sessionStorage.getItem("token"),
-          'Content-Type': 'application/json'
-      }
-  });
-
-  if (response.ok) {
-      console.log("La carte a été supprimée avec succès.");
-      // Rafraîchir la galerie après la suppression
-      getWorksAdmin().then((data) => {
-          adminGallery(data);
-      });
-   
- new WorksGallery()
-  } else {
-      console.error("Erreur lors de la suppression de la carte.");
-  }
-} catch (error) {
-  console.error(error);
-}
-}
