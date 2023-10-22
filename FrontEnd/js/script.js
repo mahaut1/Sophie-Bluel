@@ -248,7 +248,7 @@ const getWorksAdmin= async()=>{
     trashIcon.addEventListener("click", (e) => {
       e.preventDefault;
         // Obtenez l'ID de la carte à supprimer
-        const cardId = card.id;
+        const cardId = card.id; 
         
         // Appelez une fonction pour supprimer la carte avec cet ID
         deleteWork(cardId);
@@ -392,7 +392,6 @@ async handleSubmit(event) {
     });
     const data = await response.json();
     new WorksGallery()
-    //adminGallery(data);
     this.imageInput.value = "";
     this.imagePreview.style.display = "none";
     this.faImg.style.display = "flex";
