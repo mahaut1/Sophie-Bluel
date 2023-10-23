@@ -266,6 +266,8 @@ innerText.FilterButton{
 	gap: 1rem;
 	background-color: black;
 	padding-block: 1em;
+	width:100vw;
+	margin-left :calc(-1 * ((100vw - 100%) / 2));
   }
 
   .btnModifyWorks{

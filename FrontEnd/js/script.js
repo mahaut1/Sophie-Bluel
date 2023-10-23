@@ -193,7 +193,6 @@ const innerModal=modal.innerHTML=`
 <button class="btn-add-picture" id="btn-add-work">
 Ajouter une photo
 </button>
-<p id="deleteGallery">Supprimer la galerie</p>
 </footer>
 `
 // On sélectionne plusieurs éléments du DOM: la fenêtre modale, l'élément de superposition, le bouton de fermeture et le bouton d'ouverture de la modale, le conteneur flex et le bouton "Ajouter une photos"
@@ -319,6 +318,7 @@ modal.innerHTML=`
 <button type="submit" id="btn-validate">Valider</button>
 </form>
 `
+// On permet à la deuxième modale de se fermer au click sur la croix
 const btnCloseModal = document.querySelector('.fa-xmark');
 btnCloseModal.addEventListener('click', () => {
   closeModal();
@@ -327,6 +327,7 @@ btnCloseModal.addEventListener('click', () => {
 // La classe ImageUploadForm() gère la logique du formulaire d'ajout d'un work. Elle prend en charge l'aperçu de l'image sélectionnée, la vérification des inputs, et la soumission du formulaire. Les éléments du formulaire, tels que le champ de téléchargement d'image, le titre, la catégorie, etc., sont manipulés ici.
 class ImageUploadForm {
 constructor() {
+  // Le constructeur est la méthode appelé lorsqu'on crée une instance de la classe. On sélectionne dans ce constructeur les différents éléments du formulaire et on les enregistre en tant qu'attribut pour pouvoir les manipuler par la suite.
   this.uploadInput = document.getElementById("file-upload");
   this.imagePreview = document.getElementById("image-preview");
   this.titleInput = document.getElementById("titre");
@@ -338,7 +339,7 @@ constructor() {
   this.addPicture = document.querySelector("#add-pic");
   this.formatImage = document.querySelector("#format-image");
   this.arrow= document.querySelector("#arrow")
-
+ // on attache des écouteurs d'événements sur les inputs qui se déclenche quand l'admin saisie qqch et on appelle la méthode checkInputs pour vérifier la validité de l'input ou du formulaire en entier
   this.uploadInput.onchange = this.updateImagePreview.bind(this);
   this.titleInput.addEventListener("input", this.checkInputs.bind(this));
   this.categoryInput.addEventListener("input", this.checkInputs.bind(this));
@@ -370,13 +371,13 @@ checkInputs() {
   }
 }
 
-// Gérer la soumission du formulaire
+// Gérer la soumission du formulaire et vérifier que le formulaire est valide
 async handleSubmit(event) {
   event.preventDefault();
   if (!this.isFormValid()) {
     return;
   }
-// Création d'un tableau avec la récupération des inputs du formulaire
+// Si il est valide Création d'un tableau avec la récupération des inputs du formulaire
   const formData = new FormData();
   formData.append("image", this.imageInput.files[0]);
   formData.append("title", this.titleInput.value);
@@ -397,8 +398,6 @@ async handleSubmit(event) {
     this.faImg.style.display = "flex";
     this.addPicture.style.display = "flex";
     this.formatImage.style.display = "flex";
-    this.titleInput.style.innerHTML="";
-    this.categoryInput.style.display="flex"
   } catch (error) {
     alert(error.message);
   }
